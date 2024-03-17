@@ -1,15 +1,13 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:604623258149:task-definition/m4-customers:2",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:604623258149:task-definition/m5-customers:1",
     "containerDefinitions": [
         {
-            "name": "m4-customers",
-            "image": "604623258149.dkr.ecr.us-east-1.amazonaws.com/m4-customers:640b27cd1b21f02a84fcc93f7341920d12c15e2a",
-            "cpu": 1024,
-            "memory": 3072,
-            "memoryReservation": 1024,
+            "name": "m5-customers",
+            "image": "604623258149.dkr.ecr.us-east-1.amazonaws.com/m5-customers:v1",
+            "cpu": 0,
             "portMappings": [
                 {
-                    "name": "m4-customers-8004-tcp",
+                    "name": "m5-customers-8004-tcp",
                     "containerPort": 8004,
                     "hostPort": 8004,
                     "protocol": "tcp",
@@ -23,81 +21,55 @@
                     "value": "postgres"
                 },
                 {
-                    "name": "WEBHOOK_BASE_URL",
-                    "value": "temp"
-                },
-                {
                     "name": "JWT_ALGORITHM",
                     "value": "HS256"
                 },
                 {
+                    "name": "PAYMENTS_SERVICE",
+                    "value": "http://m5-payments-alb-200423424.us-east-1.elb.amazonaws.com"
+                },
+                {
                     "name": "POSTGRES_HOST",
-                    "value": "m4-customers-db.c10ffknjsfsb.us-east-1.rds.amazonaws.com"
+                    "value": "m5-customers.c10ffknjsfsb.us-east-1.rds.amazonaws.com"
                 },
                 {
                     "name": "JWT_SECRET",
-                    "value": "Pe3RD5gYwS0YTXo9L5rzW4PmIC327WJh"
-                },
-                {
-                    "name": "MERCADO_PAGO_USER_ID",
-                    "value": "temp"
+                    "value": "aaaa"
                 },
                 {
                     "name": "ENVIRONMENT",
-                    "value": "prod"
+                    "value": "dev"
                 },
                 {
                     "name": "POSTGRES_PASS",
-                    "value": "all962110"
+                    "value": "Postgres2022!"
                 },
                 {
-                    "name": "MERCADO_PAGO_ACCESS_TOKEN",
-                    "value": "temp"
+                    "name": "ORDERS_SERVICE",
+                    "value": "http://m5-orders-alb-677782790.us-east-1.elb.amazonaws.com"
                 },
                 {
                     "name": "POSTGRES_DB",
-                    "value": "postgres"
-                },
-                {
-                    "name": "MERCADO_PAGO_EXTERNAL_POS_ID",
-                    "value": "temp"
+                    "value": "m5customers"
                 }
             ],
+            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/",
-                    "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "ecs"
-                }
-            }
+            "ulimits": [],
+            "systemControls": []
         }
     ],
-    "family": "m4-customers",
+    "family": "m5-customers",
     "taskRoleArn": "arn:aws:iam::604623258149:role/my-ecs-execution-role",
     "executionRoleArn": "arn:aws:iam::604623258149:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 2,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
         {
-            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-        },
-        {
-            "name": "ecs.capability.execution-role-awslogs"
-        },
-        {
             "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -110,9 +82,6 @@
         },
         {
             "name": "ecs.capability.task-eni"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
         }
     ],
     "placementConstraints": [],
@@ -129,7 +98,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-01-28T23:27:16.684Z",
+    "registeredAt": "2024-03-17T14:53:29.443Z",
     "registeredBy": "arn:aws:iam::604623258149:root",
     "tags": []
 }
